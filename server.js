@@ -11,7 +11,7 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
-
+/*
 const client = new Client({
     user: "ybvvfosddpptkx",
     host: "ec2-54-161-255-125.compute-1.amazonaws.com",
@@ -22,7 +22,10 @@ const client = new Client({
     ssl: {
         rejectUnauthorized: false,
     },
-});
+});*/
+const client = new Client(
+    "postgres://ybvvfosddpptkx:1d5e26091ee3fcec785f53656a10c96f08c559ba8d847c2c95abde4057ffbcf4@ec2-54-161-255-125.compute-1.amazonaws.com:5432/d38o6h85l1i369"
+);
 client.connect(function (err) {
     if (err) throw err;
     console.log("connexion to database has been established !");
