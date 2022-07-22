@@ -33,6 +33,7 @@ app.post("/saving", async (req, res) => {
             client.end();
         }
     );
+    res.redirect("/");
 });
 
 app.listen(PORT, () => {
