@@ -26,12 +26,12 @@ const client = new Client({
 });
 client.connect(function (err) {
     if (err) throw err;
-    console.log("Connected!");
+    console.log("connexion to database has been established !");
 });
 
 app.post("/saving", (req, res) => {
     const data = req.body.nom;
-    var queryModel = `INSERT INTO artists VALUES(1579,'oubaouba')`;
+    var queryModel = `INSERT INTO artists ("id","name") VALUES (15789,'oubaouba')`;
     // postgresql-shallow-08047
     client.query(queryModel, (err, res) => {
         if (err) throw err;
