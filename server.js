@@ -64,16 +64,14 @@ app.post("/saving", async (req, res) => {
     });*/
     await client.query(
         "INSERT INTO artists (id,name) VALUES ($1,$2) RETURNING *",
-        ["07", req.body.nom],
+        ["107", req.body.nom],
         (error, response) => {
             if (error) {
                 throw error;
             }
-            response
-                .status(201)
-                .send(`User added with ID: ${results.rows[0].id}`);
         }
     );
+    await client.end();
     res.redirect("/");
 });
 
