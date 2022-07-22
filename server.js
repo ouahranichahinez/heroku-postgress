@@ -64,8 +64,8 @@ app.post("/saving", async (req, res) => {
     });*/
     await client.query(
         "INSERT INTO artists (id,name) VALUES ($1,$2) RETURNING *",
-        ["7777", req.body.nom],
-        (error, results) => {
+        ["07", req.body.nom],
+        (error, response) => {
             if (error) {
                 throw error;
             }
