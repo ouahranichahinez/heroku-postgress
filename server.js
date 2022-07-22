@@ -1,5 +1,6 @@
 import express from "express";
 import pkg from "pg";
+import bodyParser from "body-parser";
 
 const { Client } = pkg;
 const app = express();
