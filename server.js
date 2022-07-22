@@ -1,7 +1,10 @@
 import express from "express";
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 const { Client } = require("pg");
+
+const DATABASE_URL = postgresql - shallow - 08047;
 
 const client = new Client({
     connectionString: process.env.DATABASE_URL,
