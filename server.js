@@ -33,11 +33,34 @@ app.post("/saving", async (req, res) => {
         if (err) throw err;
         console.log("Connected!");
     });
+    /*
     await client.query(queryModel, (err, res) => {
         if (err) throw err;
         client.end();
     });
+*/
+    const insertUser = async (userName) => {
+        try {
+            await client.connect(); // gets connection
+            await client.query(
+                `INSERT INTO "artists" ("name")  
+             VALUES ($1)`,
+                [userName]
+            ); // sends queries
+            return true;
+        } catch (error) {
+            console.error(error.stack);
+            return false;
+        } finally {
+            await client.end(); // closes connection
+        }
+    };
 
+    insertUser(data).then((result) => {
+        if (result) {
+            console.log("User inserted");
+        }
+    });
     res.redirect("/");
 });
 
