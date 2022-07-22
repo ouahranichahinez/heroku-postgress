@@ -19,9 +19,9 @@ const client = new Client({
     password:
         "1d5e26091ee3fcec785f53656a10c96f08c559ba8d847c2c95abde4057ffbcf4",
     port: 5432,
-    /* ssl: {
+    ssl: {
         rejectUnauthorized: false,
-    },*/
+    },
 });
 client.connect(function (err) {
     if (err) throw err;
