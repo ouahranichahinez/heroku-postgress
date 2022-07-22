@@ -2,13 +2,13 @@ import express from "express";
 import pkg from "pg";
 import bodyParser from "body-parser";
 
-const { Client, Pool } = pkg;
+const { Client } = pkg;
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // use the express-static middleware
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
 
@@ -27,17 +27,24 @@ client.connect(function (err) {
     if (err) throw err;
     console.log("connexion to database has been established !");
 });
+var queryModel = `INSERT INTO artists ("id","name") VALUES (15789,'oubaouba')`;
+// postgresql-shallow-08047
+client.query(queryModel, (err, res) => {
+    if (err) throw err;
+    client.end();
+});
 
+/*
 app.post("/saving", (req, res) => {
     const data = req.body.nom;
-    var queryModel = `INSERT INTO artists ("id","name") VALUES (175789,'oubaouba')`;
+    var queryModel = `INSERT INTO artists ("id","name") VALUES (15789,'oubaouba')`;
     // postgresql-shallow-08047
     client.query(queryModel, (err, res) => {
         if (err) throw err;
         client.end();
     });
     res.redirect("/");
-});
+});*/
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
