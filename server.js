@@ -29,20 +29,16 @@ client.connect(function (err) {
     console.log("Connected!");
 });
 
-app.get("/", (req, res) => {});
-
-/*app.post("/saving", async (req, res) => {
+app.post("/saving", (req, res) => {
     const data = req.body.nom;
-    var queryModel = `INSERT INTO artists VALUES(159,'o')`;
-
+    var queryModel = `INSERT INTO artists VALUES(1579,'oubaouba')`;
     // postgresql-shallow-08047
-
-    await client.query(queryModel, (err, res) => {
+    client.query(queryModel, (err, res) => {
         if (err) throw err;
         client.end();
     });
     res.redirect("/");
-});*/
+});
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
