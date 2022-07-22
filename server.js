@@ -24,7 +24,7 @@ app.post("/saving", async (req, res) => {
     client.connect();
 
     client.query(
-        `insert into artists(name) values(${req.body.nom});`,
+        `INSERT INTO artists(name) VALUES(${req.body.nom});`,
         (err, res) => {
             if (err) throw err;
             for (let row of res.rows) {
