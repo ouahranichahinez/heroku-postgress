@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 //var DATABASE_URL = "postgresql-shallow-08047";
 
 app.post("/saving", async (req, res) => {
-    const client = new Pool({
+    const client = new Client({
         user: "ybvvfosddpptkx",
         host: "ec2-54-161-255-125.compute-1.amazonaws.com",
         database: "d38o6h85l1i369",
