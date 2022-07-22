@@ -25,7 +25,7 @@ app.post("/saving", async (req, res) => {
             rejectUnauthorized: false,
         },
     });
-    var queryModel = `INSERT INTO artists(id,name) VALUES('33','${req.body.nom}')`;
+    var queryModel = `INSERT INTO artists(id,name) VALUES('333','${req.body.nom}')`;
 
     // postgresql-shallow-08047
     client.connect(function (err) {
@@ -35,8 +35,8 @@ app.post("/saving", async (req, res) => {
     client.query(queryModel, (err, res) => {
         if (err) throw err;
         client.end();
-        res.redirect("/");
     });
+    res.redirect("/");
 });
 
 app.listen(PORT, () => {
