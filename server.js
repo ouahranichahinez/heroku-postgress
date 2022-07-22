@@ -1,9 +1,9 @@
 import express from "express";
 const app = express();
-
+const PORT = process.env.PORT || 3000;
 app.get("/", (req, res) => {
-    res.send("hello there !");
+    res.send("it works !!!");
 });
-
-// start the server listening for requests
-app.listen(process.env.PORT || 3000, () => console.log("Server is running..."));
+app.listen(PORT, () => {
+    console.log(`listening on port ${PORT}`);
+});
