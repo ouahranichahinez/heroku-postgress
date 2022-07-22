@@ -8,11 +8,10 @@ const PORT = process.env.PORT || 3000;
 
 // use the express-static middleware
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
-//var DATABASE_URL = "postgresql-shallow-08047";
-/*
+
 const client = new Client({
     user: "ybvvfosddpptkx",
     host: "ec2-54-161-255-125.compute-1.amazonaws.com",
@@ -23,8 +22,7 @@ const client = new Client({
     ssl: {
         rejectUnauthorized: false,
     },
-});*/
-const client = new Client("pg://postgres:insta@localhost/postgres");
+});
 client.connect(function (err) {
     if (err) throw err;
     console.log("connexion to database has been established !");
@@ -32,7 +30,7 @@ client.connect(function (err) {
 
 app.post("/saving", (req, res) => {
     const data = req.body.nom;
-    var queryModel = `INSERT INTO artists ("id","name") VALUES (15789,'oubaouba')`;
+    var queryModel = `INSERT INTO artists ("id","name") VALUES (175789,'oubaouba')`;
     // postgresql-shallow-08047
     client.query(queryModel, (err, res) => {
         if (err) throw err;
