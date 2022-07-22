@@ -26,17 +26,31 @@ app.post("/saving", async (req, res) => {
         },
     });
     const data = req.body.nom;
-    var queryModel = `INSERT INTO artists(id,name) VALUES('303','${data}')`;
+    // var queryModel = `INSERT INTO artists(id,name) VALUES('303','${data}')`;
 
     // postgresql-shallow-08047
     await client.connect(function (err) {
         if (err) throw err;
         console.log("Connected!");
     });
-    await client.query(queryModel, (err, res) => {
+    /*await client.query(queryModel, (err, res) => {
         if (err) throw err;
         client.end();
-    });
+    });*/
+    try {
+        // gets connection
+        await client.query(`INSERT INTO "artists" ("name") VALUES ($1)`, [
+            data,
+        ]);
+
+        return true;
+    } catch (error) {
+        console.error(error.stack);
+        return false;
+    } finally {
+        await client.end(); // closes connection
+    }
+
     res.redirect("/");
 });
 
