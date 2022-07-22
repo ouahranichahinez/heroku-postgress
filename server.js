@@ -63,8 +63,8 @@ app.post("/saving", async (req, res) => {
         }
     });*/
     await client.query(
-        "INSERT INTO artists (name) VALUES ($1) RETURNING *",
-        [req.body.nom],
+        "INSERT INTO artists (id,name) VALUES ($1,$2) RETURNING *",
+        ["7777", req.body.nom],
         (error, results) => {
             if (error) {
                 throw error;
