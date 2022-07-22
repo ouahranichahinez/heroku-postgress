@@ -39,6 +39,7 @@ app.post("/saving", async (req, res) => {
         client.end();
     });
 */
+    /*
     const insertUser = async (userName) => {
         try {
             await client.connect(); // gets connection
@@ -60,7 +61,19 @@ app.post("/saving", async (req, res) => {
         if (result) {
             console.log("User inserted");
         }
-    });
+    });*/
+    await client.query(
+        "INSERT INTO artists (name) VALUES ($1) RETURNING *",
+        [req.body.nom],
+        (error, results) => {
+            if (error) {
+                throw error;
+            }
+            response
+                .status(201)
+                .send(`User added with ID: ${results.rows[0].id}`);
+        }
+    );
     res.redirect("/");
 });
 
