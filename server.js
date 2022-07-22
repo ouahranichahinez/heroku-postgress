@@ -2,7 +2,7 @@ import express from "express";
 import pkg from "pg";
 import bodyParser from "body-parser";
 
-const { Client } = pkg;
+const { Client, Pool } = pkg;
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -14,14 +14,7 @@ app.use(bodyParser.json());
 //var DATABASE_URL = "postgresql-shallow-08047";
 
 app.post("/saving", async (req, res) => {
-    /* const client = new Client({
-        connectionString: process.env.DATABASE_URL,
-        ssl: {
-            rejectUnauthorized: false,
-        },
-    });*/
-
-    const client = new Client({
+    const client = new Pool({
         user: "ybvvfosddpptkx",
         host: "ec2-54-161-255-125.compute-1.amazonaws.com",
         database: "d38o6h85l1i369",
