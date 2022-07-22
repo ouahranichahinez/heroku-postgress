@@ -23,10 +23,10 @@ const client = new Client({
         rejectUnauthorized: false,
     },
 });
-client.connect(function (err) {
-    if (err) throw err;
-    console.log("connexion to database has been established !");
-});
+client
+    .connect()
+    .then(() => console.log("connection to database has been established."))
+    .catch((err) => console.error("connection error", err.stack));
 var queryModel = `INSERT INTO artists ("id","name") VALUES (088,'oubaouba')`;
 // postgresql-shallow-08047
 client.query(queryModel, (err, res) => {
