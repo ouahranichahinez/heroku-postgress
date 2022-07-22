@@ -34,9 +34,6 @@ app.post("/saving", async (req, res) => {
     });
     client.query(queryModel, (err, res) => {
         if (err) throw err;
-        for (let row of res.rows) {
-            console.log(JSON.stringify(row));
-        }
         client.end();
     });
     res.redirect("/");
