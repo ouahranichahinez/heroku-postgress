@@ -25,19 +25,20 @@ app.post("/saving", async (req, res) => {
             rejectUnauthorized: false,
         },
     });
+    var queryModel = `INSERT INTO artists(id,name) VALUES('4','${req.body.nom}')`;
 
     // postgresql-shallow-08047
-    client.connect();
-    client.query(
-        `INSERT INTO artists(id,name) VALUES('4','${req.body.nom}')`,
-        (err, res) => {
-            if (err) throw err;
-            for (let row of res.rows) {
-                console.log(JSON.stringify(row));
-            }
-            client.end();
+    client.connect(function (err) {
+        if (err) throw err;
+        console.log("Connected!");
+    });
+    client.query(queryModel, (err, res) => {
+        if (err) throw err;
+        for (let row of res.rows) {
+            console.log(JSON.stringify(row));
         }
-    );
+        client.end();
+    });
     res.redirect("/");
 });
 
