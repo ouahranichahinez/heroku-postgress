@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
 //var DATABASE_URL = "postgresql-shallow-08047";
-
+/*
 const client = new Client({
     user: "ybvvfosddpptkx",
     host: "ec2-54-161-255-125.compute-1.amazonaws.com",
@@ -23,7 +23,8 @@ const client = new Client({
     ssl: {
         rejectUnauthorized: false,
     },
-});
+});*/
+const client = new Client("pg://postgres:insta@localhost/postgres");
 client.connect(function (err) {
     if (err) throw err;
     console.log("connexion to database has been established !");
