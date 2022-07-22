@@ -26,7 +26,7 @@ app.post("/saving", async (req, res) => {
         },
     });
     const data = req.body.nom;
-    var queryModel = `INSERT INTO artists(id,name) VALUES('307773','${data}')`;
+    var queryModel = `INSERT INTO artists VALUES(159,'${data}')`;
 
     // postgresql-shallow-08047
     await client.connect(function (err) {
