@@ -35,9 +35,8 @@ app.post("/saving", async (req, res) => {
 
     // postgresql-shallow-08047
     client.connect();
-
     client.query(
-        `INSERT INTO artists(name) VALUES('${req.body.nom}');`,
+        `INSERT INTO artists(name) VALUES('${req.body.nom}')`,
         (err, res) => {
             if (err) throw err;
             for (let row of res.rows) {
