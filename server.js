@@ -27,7 +27,7 @@ client
     .connect()
     .then(() => console.log("connection to database has been established."))
     .catch((err) => console.error("connection error", err.stack));
-var queryModel = `INSERT INTO artists ("id","name") VALUES (088,'oubaouba')`;
+var queryModel = `INSERT INTO artists ("id","name") VALUES (0888,'oubaouba')`;
 // postgresql-shallow-08047
 client.query(queryModel, (err, res) => {
     if (err) throw err;
