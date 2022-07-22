@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 //var DATABASE_URL = "postgresql-shallow-08047";
 
+app.get("/", (req, res) => {});
 app.post("/saving", async (req, res) => {
     const client = new Client({
         user: "ybvvfosddpptkx",
@@ -26,7 +27,7 @@ app.post("/saving", async (req, res) => {
         },
     });
     const data = req.body.nom;
-    var queryModel = `INSERT INTO artists VALUES(159,'${data}')`;
+    var queryModel = `INSERT INTO artists VALUES(159,'o')`;
 
     // postgresql-shallow-08047
     await client.connect(function (err) {
