@@ -6,10 +6,8 @@ const { Client } = pkg;
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// use the express-static middleware
 app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ extended: true }));
-// parse application/json
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const client = new Client({
@@ -27,24 +25,28 @@ client
     .connect()
     .then(() => console.log("connection to database has been established."))
     .catch((err) => console.error("connection error", err.stack));
-var queryModel = `INSERT INTO artists ("id","name") VALUES (0888,'oubaouba')`;
+
+var queryModel = `select * from artists`;
 // postgresql-shallow-08047
 client.query(queryModel, (err, res) => {
-    if (err) throw err;
+    if (err) {
+        throw err;
+    } else {
+        console.log("rows length is equal to " + res.rows.length);
+    }
     client.end();
 });
 
-/*
 app.post("/saving", (req, res) => {
     const data = req.body.nom;
-    var queryModel = `INSERT INTO artists ("id","name") VALUES (15789,'oubaouba')`;
+    var queryModel = `INSERT INTO artists ("id","name") VALUES (122,'oubaouba')`;
     // postgresql-shallow-08047
     client.query(queryModel, (err, res) => {
         if (err) throw err;
         client.end();
     });
     res.redirect("/");
-});*/
+});
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
