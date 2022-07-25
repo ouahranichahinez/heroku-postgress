@@ -39,7 +39,7 @@ client.query(queryModel, (err, res) => {
 
 app.post("/saving", (req, res) => {
     const data = req.body.nom;
-    var queryModel = `INSERT INTO artists ("id","name") VALUES (122,'oubaouba')`;
+    var queryModel = `INSERT INTO artists ("id","name") VALUES (1722,'oubaouba')`;
     // postgresql-shallow-08047
     client.query(queryModel, (err, res) => {
         if (err) throw err;
