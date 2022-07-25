@@ -1,7 +1,6 @@
 import express from "express";
 import pkg from "pg";
 import bodyParser from "body-parser";
-
 const { Client } = pkg;
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -34,15 +33,18 @@ client.query(queryModel, (err, res) => {
     } else {
         console.log("rows length is equal to " + res.rows.length);
     }
-    client.end();
 });
 
 app.post("/saving", (req, res) => {
     const data = req.body.nom;
-    var queryModel = `INSERT INTO artists ("id","name") VALUES (953,'${req.body.nom}')`;
+    var queryModel = `INSERT INTO artists ("id","name") VALUES (${Math.floor(
+        Math.random() * (1000 - 0) + 0
+    )},'${req.body.nom}')`;
     // postgresql-shallow-08047
     client.query(queryModel, (err, res) => {
-        if (err) throw err;
+        if (err) {
+            throw err;
+        }
         client.end();
     });
     res.redirect("/");
